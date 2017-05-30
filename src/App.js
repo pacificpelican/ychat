@@ -53,7 +53,7 @@ class MyInput extends Component {
 		<div id="innerContainer">
 			<div id="title_area">
 				<h1 class="nasty_chat">
-					YOGA CHAT
+					Y CHAT
 				</h1>
 				<h5 id="tagline">
 					from <a href="http://danmckeown.info">Dan McKeown</a>
