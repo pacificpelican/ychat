@@ -34,31 +34,18 @@ class MyInput extends React.Component{
   }
 	
 	handleClick() {
-	//	console.log('send was clicked');
 		var elements = document.querySelectorAll('input');
-	//	alert('not working yet');
 		let chatContent = elements[0].value;
 		console.log(chatContent);
 		let el = "<div className='chat_item'>" + chatContent + "</div>";
-//		section.chat_data.appendChild(el);
 		var p = document.createElement("p");
-	//	document.body.appendChild(p);
-	//	document.body.section.chat_data.appendChild(el);
-	//	var xy = getElementById('chats');
-		// var xy = document.getElementById('chats');
-		// //	elem.style.color = newColor;
-		// var aChild = xy.appendChild(p);
-		
 		
 		var newDiv = document.createElement("div"); 
 		var newContent = document.createTextNode(chatContent); 
-  		newDiv.appendChild(newContent); //add the text node to the newly created div. 
+  	newDiv.appendChild(newContent); //add the text node to the newly created div. 
 
-		  // // add the newly created element and its content into the DOM 
-		  // var currentDiv = document.getElementById("div1"); 
-		  // document.body.insertBefore(newDiv, currentDiv); 
 		var xy = document.getElementById('chats');
-  	//	elem.style.color = newColor;
+  
 		var aChild = xy.appendChild(newDiv);
 		var zx = document.getElementById('chat_input');
 		var clearInput = zx.value = '';
