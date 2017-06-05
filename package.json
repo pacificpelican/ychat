@@ -1,6 +1,6 @@
 {
   "name": "ychat",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
@@ -36,6 +36,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "express": "node eapp.js",
+    "ychat": "npm run build && npm run express"
   }
 }
