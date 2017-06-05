@@ -18,6 +18,9 @@ class ChatApp extends Component {
 			<div className="chat_item">
 				___chat 4___ __ __
 			</div>
+				<div className="chat_item">
+				NOW IN APP FORM!!
+			</div>
 		</section>
     );
   }
