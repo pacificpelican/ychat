@@ -1,0 +1,55 @@
+<style>
+div#logincard {
+  background-color: #e7f2e6;
+  max-width: calc(19vw + 10px);
+  margin-left: calc(10vw);
+  border-radius: 0.9rem;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+div#logincard input {
+  width: 25vw;
+}
+
+section.lsection input {
+  margin-left: 3%;
+}
+
+div#logincard section {
+  display: flex;
+}
+
+input, span {
+  margin-top: 0.9rem;
+}
+
+input#s_button {
+  margin-left: calc(4vw + 1.4rem);
+  margin-bottom: 1rem;
+  max-width: 10vw;
+}
+
+input.userinput {
+  max-width: calc(10vw + 10px);
+}
+
+span, input {
+  font-family: Hack, "Fira Code", Menlo, mono;
+}
+</style>
+<div id="logincard" class="login_card_container_div">
+  <form id="card_login_form" action="/process/register" method="post">
+  <section class="lsection" id="login">
+    <span id="loginlabel">username:</span>
+    <input id="userlogin" type="text" name="login" class="userinput" />
+  </section>
+  <section class="lsection" id="password">
+    <span id="passwordlabel">password:</span>
+    <input id="userpassword" type="password" name="password" class="userinput" />
+  </section>
+  <section id="submit">
+    <input id="s_button" type="submit" value="register for ychat" />
+   </section>
+  </form>
+</div>
