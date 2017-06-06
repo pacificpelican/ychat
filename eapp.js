@@ -17,7 +17,7 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
     console.log(err);
     throw err;
   }
-  db.collection('testcollection').insertOne( {"username" :  "x", "password": "y"});
+  //  db.collection('testcollection').insertOne( {"username" :  "x", "password": "y"});
   db.collection('testcollection').find().toArray(function (err, result) {
     if (err) {
       console.log(err);
@@ -40,7 +40,19 @@ app.post('/process/register', (req, res) => {
   var user_name = req.body.login;
   var user_pw = req.body.password;
   console.log(req.body);
-  res.send(user_name + ' ' + user_pw);
+  let homeLink = "<a href='../../..'>Home</a>";
+  let createdAt = Date.now();
+
+  MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
+    if (err)  {
+      console.log(err);
+      throw err;
+    }
+    else {
+      db.collection('testcollection').insertOne( {"username" :  user_name, "userpassword": user_pw, "created_at": createdAt});
+    }
+    res.send(user_name + ' ' + user_pw + ' created    | ' + homeLink);
+  });
 });
 
 app.use('/static', express.static('build/static'));
