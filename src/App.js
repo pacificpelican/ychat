@@ -1,3 +1,6 @@
+//	ychat App by Dan McKeown http://danmckeown.info
+//	ychat.pacificio.com | copyright 2017
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';

@@ -1,4 +1,5 @@
 //  ExpressJS startup page for ychat App by Dan McKeown http://danmckeown.info
+//	ychat.pacificio.com | copyright 2017
 
 const express = require('express');
 const app = express();
@@ -30,6 +31,10 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname + '/build/index.html'));
+});
+
+app.get('/service-worker.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/build/service-worker.js'));
 });
 
 app.get('/register', (req, res) => {

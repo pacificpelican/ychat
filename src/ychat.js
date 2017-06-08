@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+  //	ChatApp and MyInput React components
+  //  ychat App by Dan McKeown http://danmckeown.info
+  //	ychat.pacificio.com | copyright 2017
 
+import React, { Component } from 'react';
 
 class ChatApp extends Component {
 		render() {
@@ -22,7 +25,6 @@ class ChatApp extends Component {
   }
 }
   
-
 class MyInput extends React.Component{
 	constructor(props) {
   	super(props);
