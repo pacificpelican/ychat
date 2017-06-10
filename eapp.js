@@ -8,10 +8,12 @@ var bodyParser = require('body-parser');
 
 var path = require('path');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-//  app.use( bodyParser.json() );       // to support JSON-encoded bodies
+var Strategy = require('passport-http').BasicStrategy;
 
 var MongoClient = require('mongodb').MongoClient;
+
+var passport = require('passport');
+var Strategy = require('passport-http').BasicStrategy;
 
 MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
   if (err)  {
@@ -28,6 +30,36 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
     }
   });
 });
+
+// Configure the Basic strategy for use by Passport.
+//
+// The Basic strategy requires a `verify` function which receives the
+// credentials (`username` and `password`) contained in the request.  The
+// function must verify that the password is correct and then invoke `cb` with
+// a user object, which will be set at `req.user` in route handlers after
+// authentication.
+passport.use(new Strategy(
+  function(username, password, cb) {
+//    db.users.findByUsername(username, function(err, user) {
+
+    db.collection('testcollection').findOne().toArray(function (err, result) {
+        if (err) throw err
+        console.log(result)
+      })
+
+ //     db.inventory.find( { qty: { $eq: 20 } } )
+
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      console.log("user:");
+      console.log(user);
+      return cb(null, user);
+ //   });
+  }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+//  app.use( bodyParser.json() );       // to support JSON-encoded bodies
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname + '/build/index.html'));
