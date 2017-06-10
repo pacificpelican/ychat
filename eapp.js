@@ -41,27 +41,32 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
 passport.use(new Strategy(
   function(username, password, cb) {
 //    db.users.findByUsername(username, function(err, user) {
-
-    db.collection('testcollection').findOne().toArray(function (err, result) {
-        if (err) throw err
+  console.log('submitted username and userpassword: ' + username + " " + password);
+MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
+  if (err)  {
+    console.log(err);
+    throw err;
+  }
+    db.collection('testcollection').find( { "username": { $eq: username } } ).toArray(function (err, result) {
+      //  if (err) throw err
         console.log(result)
       })
 
  //     db.inventory.find( { qty: { $eq: 20 } } )
 
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
-      console.log("user:");
-      console.log(user);
-      return cb(null, user);
- //   });
+      // if (err) { return cb(err); }
+      // if (!user) { return cb(null, false); }
+      // if (user.password != password) { return cb(null, false); }
+      // console.log("user:");
+      // console.log(user);
+      // return cb(null, user);
+    });
   }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 //  app.use( bodyParser.json() );       // to support JSON-encoded bodies
 
-app.get('/', (req, res) => {
+app.get('/', passport.authenticate('basic', { session: false }), (req, res) => {
   res.sendFile(path.resolve(__dirname + '/build/index.html'));
 });
 
