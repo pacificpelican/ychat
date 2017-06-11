@@ -73,12 +73,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //  app.use( bodyParser.json() );       // to support JSON-encoded bodies
 
 app.get('/', passport.authenticate('basic', { session: false }), (req, res) => {
-  console.log("-------++");
   console.log("req.user");
   console.log(req.user);
-  console.log("-------++");
-  res.sendFile(path.resolve(__dirname + '/build/index.html'));
+//  res.sendFile(path.resolve(__dirname + '/build/index.html'));
+  res.redirect('/build/index.html?username=' + req.user);
 });
+
+app.use('/build', express.static('build'));
+
+app.get('/info/:username', passport.authenticate('basic', { session: false }), function (req, res) {
+  res.send(req.params)
+})
 
 app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname + '/build/service-worker.js'));
