@@ -79,7 +79,7 @@ app.get('/', passport.authenticate('basic', { session: false }), (req, res) => {
   res.redirect('/build/index.html?username=' + req.user);
 });
 
-app.use('/build', express.static('build'));
+app.use('/build', passport.authenticate('basic', { session: false }), express.static('build'));
 
 app.get('/info/:username', passport.authenticate('basic', { session: false }), function (req, res) {
   res.send(req.params)
