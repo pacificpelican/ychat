@@ -49,12 +49,18 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
   }
     db.collection('testcollection').find( { "username": { $eq: username } } ).toArray(function (err, result) {
       //  if (err) throw err
+      console.log("result:")
         console.log(result)
-        if (result.password = password) {
+        console.log("result[0].userpassword:");
+        console.log(result[0].userpassword);
+        console.log("password:");
+        console.log(password);
+        if (result[0].userpassword == password) {
           return cb(null, username);
         }
         else {
-          return cb(error);
+          return cb(err);
+       //  return null;
         }
       })
 

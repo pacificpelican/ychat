@@ -93,11 +93,16 @@ class MyInput extends Component {
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <MyInput />
-      </div>
-    );
+			if ((params !== 'undefined') && (params !== undefined)) {
+				return (
+				<div className="App">
+					<MyInput />
+				</div>
+			);
+		}
+		else {
+			return(<div>not logged in</div>);
+		}
   }
 }
 
