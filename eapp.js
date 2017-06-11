@@ -73,14 +73,22 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
     });
   }));
 
+var _user_name = null;
+
 app.use(bodyParser.urlencoded({ extended: true }));
 //  app.use( bodyParser.json() );       // to support JSON-encoded bodies
 
 app.get('/', passport.authenticate('basic', { session: false }), (req, res) => {
   console.log("req.user");
   console.log(req.user);
+  _user_name = req.user;
 //  res.sendFile(path.resolve(__dirname + '/build/index.html'));
-  res.redirect('/build/index.html?username=' + req.user);
+ // res.redirect('/build/index.html?username=' + req.user);
+ res.sendFile(path.resolve(__dirname + '/build/index.html'));
+});
+
+app.get('/currentusername', passport.authenticate('basic', { session: false }), (req, res) => {
+  res.send(_user_name);
 });
 
 app.use('/build', passport.authenticate('basic', { session: false }), express.static('build'));
