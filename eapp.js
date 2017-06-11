@@ -73,6 +73,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //  app.use( bodyParser.json() );       // to support JSON-encoded bodies
 
 app.get('/', passport.authenticate('basic', { session: false }), (req, res) => {
+  console.log("-------++");
+  console.log("req.user");
+  console.log(req.user);
+  console.log("-------++");
   res.sendFile(path.resolve(__dirname + '/build/index.html'));
 });
 
