@@ -51,8 +51,10 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
       //  if (err) throw err
       console.log("result:")
         console.log(result)
-        if ((result[0].userpassword !== 'undefined') && (result[0].userpassword !== undefined) && (result[0].userpassword == password)) {
-          return cb(null, username);
+        if (result.length > 0) {
+          if (result[0].userpassword == password) {
+            return cb(null, username);
+          }
         }
         else {
           return cb(err);
