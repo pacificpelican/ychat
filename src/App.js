@@ -5,6 +5,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+var params = getParameterByName('username');
+
 class ChatApp extends Component {
 		render() {
     return(
@@ -32,6 +44,7 @@ class ChatApp extends Component {
 class MyInput extends Component {
 	constructor(props) {
   	super(props);
+		console.log("params: " + params);
     this.handleChange = this.handleChange.bind(this);
   }
   
