@@ -77,6 +77,9 @@ class MyInput extends Component {
 				<h5 id="tagline">
 					from <a href="http://danmckeown.info">Dan McKeown</a>
 				</h5>
+				<h6 id="usernameheader">
+					<span id="showusername" class="userinfo"></span>
+				</h6>
 			</div>
 			<main className="chat_box">
 			<chatContent /><ChatApp />
