@@ -4,6 +4,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+//	import io from "socket.io";
+import io from 'socket.io-client';
+
+// // var socket = io('http://localhost:3000');
+// // console.log(socket);
+
+//	var socket = io();
+
+var socket = require('socket.io-client')('http://localhost:3000');
+
+console.log(socket);
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -95,6 +110,32 @@ class MyInput extends Component {
 }
 
 class App extends Component {
+	state = { data: {} };
+
+  componentDidMount() {   
+		console.log('about so set socket state'); 
+		//	import io from 'socket.io-client'
+		
+		console.log(socket);
+    socket.on(`server:event`, data => {
+			console.log('running socket server event');
+      this.setState({ data })
+    })
+  }
+
+  sendMessage = message => {
+    socket.emit(`client:sendMessage`, message)
+  }
+
+  // render () {
+  //   return (
+  //     <Child 
+  //       socket = { socket } 
+  //       sendMessage = { this.sendMessage }
+  //     />
+  //   )
+  // }
+
   render() {
 			if ((params !== 'undefined') && (params !== undefined)) {
 				return (

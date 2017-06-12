@@ -1,9 +1,50 @@
 //  ExpressJS startup page for ychat App by Dan McKeown http://danmckeown.info
 //	ychat.pacificio.com | copyright 2017
 
-const express = require('express');
-const app = express();
+//    ----
 
+var express = require('express');
+var app = express();
+
+var server = require('http').Server(app);
+
+var io = require('socket.io')(server);
+
+//  app.use(express.static(__dirname+'/app'));
+
+// app.get('/', function(req,res){
+//   res.sendFile('index.html');
+// });
+
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
+server.listen(process.env.PORT || 3000, function () {
+  console.log('ychat app listening on port 3000');
+});
+
+//   ----
+
+// var app = require('express')();
+// var http = require('http').Server(app);
+
+// var app = require('express')();
+// var server = require('http').Server(app);
+//var io = require('socket.io')(server);
+
+//  var io = require('socket.io')(http);
+
+//  const express = require('express');
+//  const app = express();
+//  var app = require('express')();
+  // var server = require('http').Server(app);
+  // var io = require('socket.io')(server);
+//  var http = require('http').Server(app);
+//  var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 
 var path = require('path');
@@ -14,6 +55,17 @@ var MongoClient = require('mongodb').MongoClient;
 
 var passport = require('passport');
 var Strategy = require('passport-http').BasicStrategy;
+
+// var http = require('http').Server(app);
+// var io = require('socket.io')(http);
+
+// var app = require('express')();
+// var server = require('http').Server(app);
+// var io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+  console.log('a user connected [socketIO]');
+});
 
 MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
   if (err)  {
@@ -26,7 +78,7 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
       console.log(err);
     }
     else {
-      console.log(result);
+  //    console.log(result);
     }
   });
 });
@@ -91,7 +143,9 @@ app.get('/currentusername', passport.authenticate('basic', { session: false }), 
   res.send(_user_name);
 });
 
-app.use('/build', passport.authenticate('basic', { session: false }), express.static('build'));
+app.use('/build', express.static('build'));
+
+app.use('/socket.io', express.static('node_modules/socket.io/socket.js'));
 
 app.get('/info/:username', passport.authenticate('basic', { session: false }), function (req, res) {
   res.send(req.params)
@@ -126,6 +180,13 @@ app.post('/process/register', (req, res) => {
 
 app.use('/static', express.static('build/static'));
 
-app.listen(3000, function () {
-  console.log('ychat app listening on port 3000');
-});
+// app.listen(3000, function () {
+//   console.log('ychat app listening on port 3000');
+// });
+
+// io.on('connection', function (socket) {
+//   socket.emit('news', { hello: 'world' });
+//   socket.on('my other event', function (data) {
+//     console.log(data);
+//   });
+// });

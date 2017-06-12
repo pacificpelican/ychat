@@ -1,6 +1,6 @@
 {
   "name": "ychat",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
@@ -17,7 +17,9 @@
     "morgan": "^1.6.1",
     "passport": "^0.2.2",
     "passport-http": "^0.3.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "socket.io" : "^2.0.2",
+    "socket.io-client" : "^2.0.2"
   },
     "keywords": [
     "react",
