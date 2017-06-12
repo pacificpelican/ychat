@@ -1,20 +1,10 @@
 //  ExpressJS startup page for ychat App by Dan McKeown http://danmckeown.info
 //	ychat.pacificio.com | copyright 2017
 
-//    ----
-
 var express = require('express');
 var app = express();
-
 var server = require('http').Server(app);
-
 var io = require('socket.io')(server);
-
-//  app.use(express.static(__dirname+'/app'));
-
-// app.get('/', function(req,res){
-//   res.sendFile('index.html');
-// });
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
@@ -27,24 +17,11 @@ server.listen(process.env.PORT || 3000, function () {
   console.log('ychat app listening on port 3000');
 });
 
-//   ----
-
-// var app = require('express')();
-// var http = require('http').Server(app);
-
 // var app = require('express')();
 // var server = require('http').Server(app);
 //var io = require('socket.io')(server);
-
 //  var io = require('socket.io')(http);
 
-//  const express = require('express');
-//  const app = express();
-//  var app = require('express')();
-  // var server = require('http').Server(app);
-  // var io = require('socket.io')(server);
-//  var http = require('http').Server(app);
-//  var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 
 var path = require('path');
@@ -55,13 +32,6 @@ var MongoClient = require('mongodb').MongoClient;
 
 var passport = require('passport');
 var Strategy = require('passport-http').BasicStrategy;
-
-// var http = require('http').Server(app);
-// var io = require('socket.io')(http);
-
-// var app = require('express')();
-// var server = require('http').Server(app);
-// var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
   console.log('a user connected [socketIO]');
@@ -113,8 +83,6 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
        //  return null;
         }
       })
-
- //     db.inventory.find( { qty: { $eq: 20 } } )
 
       // if (err) { return cb(err); }
       // if (!user) { return cb(null, false); }

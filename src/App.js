@@ -4,13 +4,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-//	import io from "socket.io";
 import io from 'socket.io-client';
-
-// // var socket = io('http://localhost:3000');
-// // console.log(socket);
-
-//	var socket = io();
 
 var socket = require('socket.io-client')('http://localhost:3000');
 
