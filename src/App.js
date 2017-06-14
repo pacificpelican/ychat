@@ -11,7 +11,7 @@ var socket = require('socket.io-client')('http://localhost:3000');
 console.log(socket);
   socket.on('news', function (data) {
     console.log(data);
-    socket.emit('my other event', { my: 'data' });
+    socket.emit('my other event', { my: 'chat_data' });
   });
 
 	socket.on('chat message', function(msg){

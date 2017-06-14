@@ -71,7 +71,7 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
           }
         }
         else {
-          return cb(err);
+          return cb(null, false);
         }
       })
       // if (err) { return cb(err); }
