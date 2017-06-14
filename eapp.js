@@ -11,25 +11,18 @@ io.on('connection', function (socket) {
   socket.on('my other event', function (data) {
     console.log(data);
   });
+  socket.emit('chat message', "this_msg");
 });
 
 server.listen(process.env.PORT || 3000, function () {
   console.log('ychat app listening on port 3000');
 });
 
-// var app = require('express')();
-// var server = require('http').Server(app);
-//var io = require('socket.io')(server);
-//  var io = require('socket.io')(http);
-
 var bodyParser = require('body-parser');
-
 var path = require('path');
 
 var Strategy = require('passport-http').BasicStrategy;
-
 var MongoClient = require('mongodb').MongoClient;
-
 var passport = require('passport');
 var Strategy = require('passport-http').BasicStrategy;
 
@@ -42,13 +35,12 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
     console.log(err);
     throw err;
   }
-  //  db.collection('testcollection').insertOne( {"username" :  "x", "password": "y"});
   db.collection('testcollection').find().toArray(function (err, result) {
     if (err) {
       console.log(err);
     }
     else {
-  //    console.log(result);
+      //  do nothing
     }
   });
 });
@@ -80,10 +72,8 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
         }
         else {
           return cb(err);
-       //  return null;
         }
       })
-
       // if (err) { return cb(err); }
       // if (!user) { return cb(null, false); }
       // if (user.password != password) { return cb(null, false); }
@@ -102,9 +92,7 @@ app.get('/', passport.authenticate('basic', { session: false }), (req, res) => {
   console.log("req.user");
   console.log(req.user);
   _user_name = req.user;
-//  res.sendFile(path.resolve(__dirname + '/build/index.html'));
- // res.redirect('/build/index.html?username=' + req.user);
- res.sendFile(path.resolve(__dirname + '/build/index.html'));
+  res.sendFile(path.resolve(__dirname + '/build/index.html'));
 });
 
 app.get('/currentusername', passport.authenticate('basic', { session: false }), (req, res) => {
@@ -147,14 +135,3 @@ app.post('/process/register', (req, res) => {
 });
 
 app.use('/static', express.static('build/static'));
-
-// app.listen(3000, function () {
-//   console.log('ychat app listening on port 3000');
-// });
-
-// io.on('connection', function (socket) {
-//   socket.emit('news', { hello: 'world' });
-//   socket.on('my other event', function (data) {
-//     console.log(data);
-//   });
-// });

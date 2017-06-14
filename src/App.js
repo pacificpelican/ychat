@@ -14,6 +14,11 @@ console.log(socket);
     socket.emit('my other event', { my: 'data' });
   });
 
+	socket.on('chat message', function(msg){
+      console.log('message received');
+			console.log(msg);
+    });
+
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -106,29 +111,26 @@ class MyInput extends Component {
 class App extends Component {
 	state = { data: {} };
 
+	constructor() {
+		super();
+		
+	}
+
   componentDidMount() {   
 		console.log('about so set socket state'); 
 		//	import io from 'socket.io-client'
 		
 		console.log(socket);
-    socket.on(`server:event`, data => {
-			console.log('running socket server event');
-      this.setState({ data })
-    })
+    // socket.on(`server:event`, data => {
+		// 	console.log('running socket server event');
+    //   this.setState({ data })
+    // })
+
   }
 
   sendMessage = message => {
     socket.emit(`client:sendMessage`, message)
   }
-
-  // render () {
-  //   return (
-  //     <Child 
-  //       socket = { socket } 
-  //       sendMessage = { this.sendMessage }
-  //     />
-  //   )
-  // }
 
   render() {
 			if ((params !== 'undefined') && (params !== undefined)) {
