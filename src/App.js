@@ -10,12 +10,17 @@ var socket = require('socket.io-client')('http://localhost:3000');
 
 var request = require('superagent');
 
-request.
+function getloggedinuser() {
+	request.
 	get('/currentusername')
   .end(function(err, res){
-    console.log("ran request for user name:")
+    console.log("res.text:")
 		console.log(res.text);
+		return res.text;
   });
+}
+
+const currentuser = getloggedinuser();
 
 console.log(socket);
   socket.on('news', function (data) {
@@ -118,15 +123,14 @@ class MyInput extends Component {
 }
 
 class App extends Component {
-	state = { data: {} };
+	state = { theuser: {currentuser} };
 
 	constructor() {
 		super();
-		
 	}
 
   componentDidMount() {   
-		console.log('about so set socket state'); 
+		console.log('about to set socket state'); 
 		//	import io from 'socket.io-client'
 		
 		console.log(socket);
@@ -142,10 +146,19 @@ class App extends Component {
   }
 
   render() {
+		var thisuser;
+		request.
+			get('/currentusername')
+			.end(function(err, res){
+				thisuser = res.text;
+				console.log("thisuser")
+				console.log(thisuser);
+		});
+		console.log('username in render function: ' + thisuser);
 			if ((params !== 'undefined') && (params !== undefined)) {
 				return (
 				<div className="App">
-					<MyInput />
+					<MyInput loggeduser={thisuser} />
 				</div>
 			);
 		}
