@@ -20,7 +20,7 @@ function getloggedinuser() {
   });
 }
 
-const currentuser = getloggedinuser();
+const thisuser = getloggedinuser();
 
 console.log(socket);
   socket.on('news', function (data) {
@@ -123,7 +123,7 @@ class MyInput extends Component {
 }
 
 class App extends Component {
-	state = { theuser: {currentuser} };
+	state = { theuser: thisuser };
 
 	constructor() {
 		super();
@@ -154,11 +154,12 @@ class App extends Component {
 				console.log("thisuser")
 				console.log(thisuser);
 		});
-		console.log('username in render function: ' + thisuser);
+		console.log('username in render function: ');
+		console.log(this.state.theuser);
 			if ((params !== 'undefined') && (params !== undefined)) {
 				return (
 				<div className="App">
-					<MyInput loggeduser={thisuser} />
+					<MyInput loggeduser={this.state.theuser} />
 				</div>
 			);
 		}
