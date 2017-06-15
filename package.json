@@ -19,7 +19,8 @@
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",
     "socket.io" : "^2.0.2",
-    "socket.io-client" : "^2.0.2"
+    "socket.io-client" : "^2.0.2",
+    "superagent": "^3.5.2"
   },
     "keywords": [
     "react",

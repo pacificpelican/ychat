@@ -8,6 +8,15 @@ import io from 'socket.io-client';
 
 var socket = require('socket.io-client')('http://localhost:3000');
 
+var request = require('superagent');
+
+request.
+	get('/currentusername')
+  .end(function(err, res){
+    console.log("ran request for user name:")
+		console.log(res.text);
+  });
+
 console.log(socket);
   socket.on('news', function (data) {
     console.log(data);
