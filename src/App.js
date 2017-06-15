@@ -20,6 +20,16 @@ function getloggedinuser() {
   });
 }
 
+function SetloggedinuserF() {
+		var outer;
+		request.
+		get('/currentusername')
+		.end(function(err, res){
+			outer = res.text;
+
+		});
+	}
+
 const thisuser = getloggedinuser();
 
 console.log(socket);
@@ -79,6 +89,18 @@ class MyInput extends Component {
   handleChange(e) {
   	console.log('e', e.target.vaule);
   }
+
+	getloggedinuserM() {
+		var outer;
+		request.
+		get('/currentusername')
+		.end(function(err, res){
+			outer = res.text;
+		});
+			console.log("method res.text exported:")
+			console.log(outer);
+			return outer;
+	}
 	
 	handleClick() {
 		var elements = document.querySelectorAll('input');
@@ -94,6 +116,17 @@ class MyInput extends Component {
 		var zx = document.getElementById('chat_input');
 		var clearInput = zx.value = '';
 	}	
+
+	componentDidMount() {   
+		console.log('MyInput component did mount');
+		var userNameSpan  = document.getElementById('showusername');
+		request.
+		get('/currentusername')
+		.end(function(err, res){
+			var putInUserNameLater = userNameSpan.textContent = res.text;
+			console.log('userNameSpan text updated to ' + res.text);
+		});
+  }
 	
   render() {
   	return (
@@ -106,7 +139,7 @@ class MyInput extends Component {
 					from <a href="http://danmckeown.info">Dan McKeown</a>
 				</h5>
 				<h6 id="usernameheader">
-					<span id="showusername" class="userinfo"></span>
+					<span id="showusernamelabel" class="userinfo">user:</span> <span id="showusername" class="userinfo"></span>
 				</h6>
 			</div>
 			<main className="chat_box">
