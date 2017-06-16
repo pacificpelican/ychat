@@ -121,15 +121,15 @@ class MyInput extends Component {
 		var elements = document.querySelectorAll('input');
 		let chatContent = elements[0].value;
 		console.log(chatContent);
-		let el = "<div className='chat_item'>" + chatContent + "</div>";
-		var p = document.createElement("p");
-		var newDiv = document.createElement("div"); 
-		var newContent = document.createTextNode(chatContent); 
-  	newDiv.appendChild(newContent); //add the text node to the newly created div. 
-		var xy = document.getElementById('chats');
-		var aChild = xy.appendChild(newDiv);
-		var zx = document.getElementById('chat_input');
-		var clearInput = zx.value = '';
+		// let el = "<div className='chat_item'>" + chatContent + "</div>";
+		// var p = document.createElement("p");
+		// var newDiv = document.createElement("div"); 
+		// var newContent = document.createTextNode(chatContent); 
+  	// newDiv.appendChild(newContent); //add the text node to the newly created div. 
+		// var xy = document.getElementById('chats');
+		// var aChild = xy.appendChild(newDiv);
+		// var zx = document.getElementById('chat_input');
+		// var clearInput = zx.value = '';
 
 		var userNameSpanCurrentID  = document.getElementById('showusername');
 		var userNameText = userNameSpanCurrentID.textContent;
