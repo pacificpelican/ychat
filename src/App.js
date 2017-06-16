@@ -20,15 +20,6 @@ function getloggedinuser() {
   });
 }
 
-function SetloggedinuserF() {
-		var outer;
-		request.
-		get('/currentusername')
-		.end(function(err, res){
-			outer = res.text;
-		});
-	}
-
 const thisuser = getloggedinuser();
 
 console.log(socket);
@@ -102,6 +93,7 @@ class MyInput extends Component {
 		var userNameSpanCurrentID  = document.getElementById('showusername');
 		var userNameText = userNameSpanCurrentID.textContent;
 
+		let setToNothing = document.getElementById("chat_input").value = "";
     socket.emit('chat message', {msg: chatContent, sender: userNameText, sentTime: Date.now()});
 	}	
 
@@ -144,7 +136,8 @@ class MyInput extends Component {
 }
 
 class App extends Component {
-	state = { theuser: thisuser };
+	state = { theuser: thisuser };	
+	//	Ultimately there is probably no need for this; username is set in componentDid Mount of MyInput
 
 	constructor() {
 		super();
