@@ -14,6 +14,13 @@ io.on('connection', function (socket) {
   socket.emit('chat message', "this_msg");
 });
 
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+    console.log('message: ' + msg);
+  });
+});
+
 server.listen(process.env.PORT || 3000, function () {
   console.log('ychat app listening on port 3000');
 });

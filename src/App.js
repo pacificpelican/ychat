@@ -82,6 +82,21 @@ class ChatApp extends Component {
 class MyInput extends Component {
 	constructor(props) {
   	super(props);
+
+		socket.on('chat message', function(msg){
+          console.log("receiving chat message: " + msg.msg + " " + msg.sender + " " + msg.sentTime);
+          // let el = "<div className='chat_item'>" + msg.sender + ": " + msg.msg + "</div>";
+					// var p = document.createElement("p");
+					var newDiv = document.createElement("div");
+					let chatContent = msg.sender + ": " + msg.msg;
+					var newContent = document.createTextNode(chatContent); 
+					newDiv.appendChild(newContent); //add the text node to the newly created div. 
+					var xy = document.getElementById('chats');
+					var aChild = xy.appendChild(newDiv);
+					//   $('#messages').append($('<li>').text(msg.msg));
+          // tColumn.msgs.push(msg);
+        });
+
 		console.log("params: " + params);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -115,6 +130,11 @@ class MyInput extends Component {
 		var aChild = xy.appendChild(newDiv);
 		var zx = document.getElementById('chat_input');
 		var clearInput = zx.value = '';
+
+		var userNameSpanCurrentID  = document.getElementById('showusername');
+		var userNameText = userNameSpanCurrentID.textContent;
+
+    socket.emit('chat message', {msg: chatContent, sender: userNameText, sentTime: Date.now()});
 	}	
 
 	componentDidMount() {   
