@@ -26,7 +26,6 @@ function SetloggedinuserF() {
 		get('/currentusername')
 		.end(function(err, res){
 			outer = res.text;
-
 		});
 	}
 
@@ -54,7 +53,7 @@ var params = getParameterByName('username');
 class ChatApp extends Component {
 		render() {
     return(
-      <section id="chats" className="chat_data">
+    <section id="chats" className="chat_data">
 			
 		</section>
     );
@@ -67,16 +66,12 @@ class MyInput extends Component {
 
 		socket.on('chat message', function(msg){
           console.log("receiving chat message: " + msg.msg + " " + msg.sender + " " + msg.sentTime);
-          // let el = "<div className='chat_item'>" + msg.sender + ": " + msg.msg + "</div>";
-					// var p = document.createElement("p");
 					var newDiv = document.createElement("div");
 					let chatContent = msg.sender + ": " + msg.msg;
 					var newContent = document.createTextNode(chatContent); 
 					newDiv.appendChild(newContent); //add the text node to the newly created div. 
 					var xy = document.getElementById('chats');
 					var aChild = xy.appendChild(newDiv);
-					//   $('#messages').append($('<li>').text(msg.msg));
-          // tColumn.msgs.push(msg);
         });
 
 		console.log("params: " + params);
@@ -103,15 +98,6 @@ class MyInput extends Component {
 		var elements = document.querySelectorAll('input');
 		let chatContent = elements[0].value;
 		console.log(chatContent);
-		// let el = "<div className='chat_item'>" + chatContent + "</div>";
-		// var p = document.createElement("p");
-		// var newDiv = document.createElement("div"); 
-		// var newContent = document.createTextNode(chatContent); 
-  	// newDiv.appendChild(newContent); //add the text node to the newly created div. 
-		// var xy = document.getElementById('chats');
-		// var aChild = xy.appendChild(newDiv);
-		// var zx = document.getElementById('chat_input');
-		// var clearInput = zx.value = '';
 
 		var userNameSpanCurrentID  = document.getElementById('showusername');
 		var userNameText = userNameSpanCurrentID.textContent;
@@ -165,15 +151,7 @@ class App extends Component {
 	}
 
   componentDidMount() {   
-		console.log('about to set socket state'); 
-		//	import io from 'socket.io-client'
-		
 		console.log(socket);
-    // socket.on(`server:event`, data => {
-		// 	console.log('running socket server event');
-    //   this.setState({ data })
-    // })
-
   }
 
   sendMessage = message => {
