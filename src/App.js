@@ -59,21 +59,7 @@ class ChatApp extends Component {
 		render() {
     return(
       <section id="chats" className="chat_data">
-			<div className="chat_item">
-				__HELLO WORLD___
-			</div>
-			<div className="chat_item">
-				___chat2___
-			</div>
-			<div className="chat_item">
-				___chat 3___
-			</div>
-			<div className="chat_item">
-				___chat 4___ __ __
-			</div>
-				<div className="chat_item">
-				NOW IN APP FORM!!
-			</div>
+			
 		</section>
     );
   }
