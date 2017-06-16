@@ -33,10 +33,6 @@ function SetloggedinuserF() {
 const thisuser = getloggedinuser();
 
 console.log(socket);
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'chat_data' });
-  });
 
 	socket.on('chat message', function(msg){
       console.log('message received');

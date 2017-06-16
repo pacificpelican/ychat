@@ -6,14 +6,6 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-  socket.emit('chat message', "this_msg");
-});
-
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
