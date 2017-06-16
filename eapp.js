@@ -69,9 +69,12 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
           if (result[0].userpassword == password) {
             return cb(null, username);
           }
+          else {
+          return cb(null, false);
+          }
         }
         else {
-          return cb(null, false);
+          return cb(error);
         }
       })
       // if (err) { return cb(err); }
