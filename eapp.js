@@ -38,9 +38,6 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
     if (err) {
       console.log(err);
     }
-    else {
-      //  do nothing
-    }
   });
 });
 
@@ -61,7 +58,6 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
     throw err;
   }
     db.collection('testcollection').find( { "username": { $eq: username } } ).toArray(function (err, result) {
-      //  if (err) throw err
       console.log("result:")
         console.log(result)
         if (result.length > 0) {
@@ -76,12 +72,6 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
           return cb(error);
         }
       })
-      // if (err) { return cb(err); }
-      // if (!user) { return cb(null, false); }
-      // if (user.password != password) { return cb(null, false); }
-      // console.log("user:");
-      // console.log(user);
-      // return cb(null, user);
     });
   }));
 

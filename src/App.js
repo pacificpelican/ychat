@@ -136,9 +136,6 @@ class MyInput extends Component {
 }
 
 class App extends Component {
-	state = { theuser: thisuser };	
-	//	Ultimately there is probably no need for this; username is set in componentDid Mount of MyInput
-
 	constructor() {
 		super();
 	}
@@ -160,12 +157,10 @@ class App extends Component {
 				console.log("thisuser")
 				console.log(thisuser);
 		});
-		console.log('username in render function: ');
-		console.log(this.state.theuser);
 			if ((params !== 'undefined') && (params !== undefined)) {
 				return (
 				<div className="App">
-					<MyInput loggeduser={this.state.theuser} />
+					<MyInput />
 				</div>
 			);
 		}
