@@ -40,7 +40,7 @@ This project provides the following features:
 - To start users should create an account at [/register](http://localhost:3000/register).
 - Once an account is created, follow the link to the [home](http://localhost:3000) page and log in with the account.
 - Once the chat page loads, the user can share chat messages with the room and receive messages from other users logged into the site
-- ychat installations are one large chat room with all currently logged-in users able to send and receive messages to the whole ychat room
+- ychat installations are one large chat room with all currently logged-in users able to send and receive messages to the whole ychat room.
 
 ## demo-app
 - A [live deployement](http://ychat.pacificio.com) of ychat is planned for summer 2017.

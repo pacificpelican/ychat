@@ -47,7 +47,8 @@ button {
 }
 
 div.user_input, section.user_input {
-	position:absolute;bottom:0;
+	position: absolute;
+	bottom: 0;
 	margin-bottom: calc(0.6em + 3.5vh);
 }
 
@@ -67,7 +68,6 @@ h5#tagline, h5#tagline a {
 	font-family: Hack, 'Fira Code', monospace;
 	color: orange;
 }
-
 
 @media screen and (max-width: 760px) {
 	h1, h5 {

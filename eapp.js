@@ -23,7 +23,6 @@ var path = require('path');
 var Strategy = require('passport-http').BasicStrategy;
 var MongoClient = require('mongodb').MongoClient;
 var passport = require('passport');
-var Strategy = require('passport-http').BasicStrategy;
 
 io.on('connection', function(socket){
   console.log('a user connected [socketIO]');
@@ -52,28 +51,28 @@ passport.use(new Strategy(
   function(username, password, cb) {
 //    db.users.findByUsername(username, function(err, user) {
   console.log('submitted username and userpassword: ' + username + " " + password);
-MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
-  if (err)  {
-    console.log(err);
-    throw err;
-  }
-    db.collection('testcollection').find( { "username": { $eq: username } } ).toArray(function (err, result) {
-      console.log("result:")
-        console.log(result)
-        if (result.length > 0) {
-          if (result[0].userpassword == password) {
-            return cb(null, username);
+  MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
+    if (err)  {
+      console.log(err);
+      throw err;
+    }
+      db.collection('testcollection').find( { "username": { $eq: username } } ).toArray(function (err, result) {
+        console.log("result:")
+          console.log(result)
+          if (result.length > 0) {
+            if (result[0].userpassword == password) {
+              return cb(null, username);
+            }
+            else {
+            return cb(null, false);
+            }
           }
           else {
-          return cb(null, false);
+            return cb(err);
           }
-        }
-        else {
-          return cb(err);
-        }
-      })
-    });
-  }));
+        })
+      });
+    }));
 
 var _user_name = null;
 
