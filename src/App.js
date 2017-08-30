@@ -10,17 +10,17 @@ var socket = require('socket.io-client')('http://localhost:3000');
 
 var request = require('superagent');
 
-function getloggedinuser() {
-	request.
-	get('/currentusername')
-  .end(function(err, res){
-    console.log("res.text:")
-		console.log(res.text);
-		return res.text;
-  });
-}
+// function getloggedinuser() {
+// 	request.
+// 	get('/currentusername')
+//   .end(function(err, res){
+//     console.log("res.text:")
+// 		console.log(res.text);
+// 		return res.text;
+//   });
+// }
 
-const thisuser = getloggedinuser();
+// const thisuser = getloggedinuser();
 
 console.log(socket);
 
@@ -73,21 +73,24 @@ class MyInput extends Component {
   	console.log('e', e.target.vaule);
   }
 
-	getloggedinuserM() {
-		var outer;
-		request.
-		get('/currentusername')
-		.end(function(err, res){
-			outer = res.text;
-		});
-			console.log("method res.text exported:")
-			console.log(outer);
-			return outer;
-	}
+	// getloggedinuserM() {
+	// 	var outer;
+	// 	request.
+	// 	get('/currentusername')
+	// 	.end(function(err, res){
+	// 		outer = res.text;
+	// 	});
+	// 		console.log("method res.text exported:")
+	// 		console.log(outer);
+	// 		return outer;
+	// }
 	
 	handleClick() {
 		var elements = document.querySelectorAll('input');
-		let chatContent = elements[0].value;
+	//	let chatContent = elements[0].value;
+
+		let elements1 = document.getElementById("chat_input");
+		let chatContent = elements1.value;
 		console.log(chatContent);
 
 		var userNameSpanCurrentID  = document.getElementById('showusername');
@@ -149,24 +152,24 @@ class App extends Component {
   }
 
   render() {
-		var thisuser;
-		request.
-			get('/currentusername')
-			.end(function(err, res){
-				thisuser = res.text;
-				console.log("thisuser")
-				console.log(thisuser);
-		});
-			if ((params !== 'undefined') && (params !== undefined)) {
+		// var thisuser;
+		// request.
+		// 	get('/currentusername')
+		// 	.end(function(err, res){
+		// 		thisuser = res.text;
+		// 		console.log("thisuser")
+		// 		console.log(thisuser);
+		// });
+		// 	if ((params !== 'undefined') && (params !== undefined)) {
 				return (
 				<div className="App">
 					<MyInput />
 				</div>
 			);
-		}
-		else {
-			return(<div>not logged in</div>);
-		}
+		// }
+		// else {
+		// 	return(<div>not logged in</div>);
+		// }
   }
 }
 
