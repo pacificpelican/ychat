@@ -72,23 +72,8 @@ class MyInput extends Component {
   handleChange(e) {
   	console.log('e', e.target.vaule);
   }
-
-	// getloggedinuserM() {
-	// 	var outer;
-	// 	request.
-	// 	get('/currentusername')
-	// 	.end(function(err, res){
-	// 		outer = res.text;
-	// 	});
-	// 		console.log("method res.text exported:")
-	// 		console.log(outer);
-	// 		return outer;
-	// }
 	
 	handleClick() {
-	//	var elements = document.querySelectorAll('input');
-	//	let chatContent = elements[0].value;
-
 		let elements1 = document.getElementById("chat_input");
 		let chatContent = elements1.value;
 		console.log(chatContent);
@@ -156,24 +141,11 @@ class App extends Component {
   }
 
   render() {
-		// var thisuser;
-		// request.
-		// 	get('/currentusername')
-		// 	.end(function(err, res){
-		// 		thisuser = res.text;
-		// 		console.log("thisuser")
-		// 		console.log(thisuser);
-		// });
-		// 	if ((params !== 'undefined') && (params !== undefined)) {
 				return (
 				<div className="App">
 					<MyInput />
 				</div>
 			);
-		// }
-		// else {
-		// 	return(<div>not logged in</div>);
-		// }
   }
 }
 
