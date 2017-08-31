@@ -75,3 +75,17 @@ h5#tagline, h5#tagline a {
 		opacity: 0.3;
 	}
 }
+
+span#cantclick, span#cantclick a {
+	color: darkblue;
+}
+
+div#title_area {
+	margin-left: 0.2em;
+}
+
+span#ychatlink a {
+	font-size: small;
+	font-family: Helvetica, sans-serif;
+	color: lightgreen;
+}

@@ -83,7 +83,13 @@ class MyInput extends Component {
 
 		let setToNothing = document.getElementById("chat_input").value = "";
     socket.emit('chat message', {msg: chatContent, sender: userNameText, sentTime: Date.now()});
-	}	
+	}
+
+	handleKeyPress = (event) => {
+		if(event.key == 'Enter'){
+			this.handleClick();
+		}
+	}
 
 	componentDidMount() {   
 		console.log('MyInput component did mount');
@@ -110,13 +116,16 @@ class MyInput extends Component {
 					<span id="showusernamelabel" class="userinfo">user:</span> <span id="showusername" class="userinfo"></span>
 				</h6>
 				<p>
-					<span id="cantclick"><a href="#" onClick={function() { alert('ok should be fixed')}}>can't type?</a></span>
+					<span id="cantclick"><a href="#" onClick={function() { alert('ok the cursor should be free')}}>just type!</a></span>
+				</p>
+				<p>
+					<span id="ychatlink"><a href="http://ychat.pacificio.com">ychat on pacificio</a></span>
 				</p>
 			</div>
 			<main className="chat_box">
 			<chatContent /><ChatApp />
 				<div className="user_input" id="root0">
-					<span><input type="text" id="chat_input" className="user_chat" /></span>
+					<span><input type="text" id="chat_input" className="user_chat" onKeyUp={this.handleKeyPress} /></span>
 					<button onClick={this.handleClick} className="user_button">
 						send
 					</button>
