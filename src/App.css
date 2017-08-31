@@ -53,11 +53,18 @@ div.user_input, section.user_input {
 }
 
 div.chat_item, section#chats div {
-	margin-bottom: 0.5em;
+	margin-top: 0.2em;
 	border-style: solid;
 	border-width: 1px;
 	border-color: lightgreen;
 	width: 98%;
+}
+
+main.chat_box section aside {
+	font-family: Helvetica, "Lucida Grande", sans-serif;
+	font-size: 0.4em;
+	margin-bottom: 0.5em;
+	color: gray;
 }
 
 h1.nasty_chat {

@@ -10,33 +10,21 @@ var socket = require('socket.io-client')('http://localhost:3000');
 
 var request = require('superagent');
 
-// function getloggedinuser() {
-// 	request.
-// 	get('/currentusername')
-//   .end(function(err, res){
-//     console.log("res.text:")
-// 		console.log(res.text);
-// 		return res.text;
-//   });
-// }
-
-// const thisuser = getloggedinuser();
-
 console.log(socket);
 
-	socket.on('chat message', function(msg){
-      console.log('message received');
-			console.log(msg);
-    });
+	socket.on('chat message', function(msg) {
+    console.log('message received');
+		console.log(msg);
+  });
 
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 var params = getParameterByName('username');
@@ -55,14 +43,21 @@ class MyInput extends Component {
 	constructor(props) {
   	super(props);
 
-		socket.on('chat message', function(msg){
+		socket.on('chat message', function(msg) {
           console.log("receiving chat message: " + msg.msg + " " + msg.sender + " " + msg.sentTime);
 					var newDiv = document.createElement("div");
+					let processedTime = ((((msg.sentTime / 60) / 60) / 24 / 1000 / 365) + 1970);
 					let chatContent = msg.sender + ": " + msg.msg;
+					let chatMeta = "sent " + processedTime + " ";
 					var newContent = document.createTextNode(chatContent); 
-					newDiv.appendChild(newContent); //add the text node to the newly created div. 
+					newDiv.appendChild(newContent); //add the text node to the newly created div.
 					var xy = document.getElementById('chats');
 					var aChild = xy.appendChild(newDiv);
+					var newSec = document.createElement("aside");
+					var newMetaContent = document.createTextNode(chatMeta); 
+					newSec.appendChild(newMetaContent); //add the text node to the newly created div.
+					var xy2 = document.getElementById('chats');
+					var aChild2 = xy.appendChild(newSec);
         });
 
 		console.log("params: " + params);
