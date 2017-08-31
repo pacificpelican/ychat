@@ -90,7 +90,7 @@ app.get('/currentusername', passport.authenticate('basic', { session: false }), 
   res.send(_user_name);
 });
 
-app.use('/build', express.static('build'));
+app.get('/build', express.static('build'));
 
 app.use('/socket.io', express.static('node_modules/socket.io/socket.js'));
 

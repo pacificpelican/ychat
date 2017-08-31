@@ -86,7 +86,7 @@ class MyInput extends Component {
 	// }
 	
 	handleClick() {
-		var elements = document.querySelectorAll('input');
+	//	var elements = document.querySelectorAll('input');
 	//	let chatContent = elements[0].value;
 
 		let elements1 = document.getElementById("chat_input");
@@ -124,11 +124,14 @@ class MyInput extends Component {
 				<h6 id="usernameheader">
 					<span id="showusernamelabel" class="userinfo">user:</span> <span id="showusername" class="userinfo"></span>
 				</h6>
+				<p>
+					<span id="cantclick"><a href="#" onClick={function() { alert('ok should be fixed')}}>can't type?</a></span>
+				</p>
 			</div>
 			<main className="chat_box">
 			<chatContent /><ChatApp />
 				<div className="user_input" id="root0">
-					<input id="chat_input" className="user_chat" />
+					<span><input type="text" id="chat_input" className="user_chat" /></span>
 					<button onClick={this.handleClick} className="user_button">
 						send
 					</button>
@@ -145,6 +148,7 @@ class App extends Component {
 
   componentDidMount() {   
 		console.log(socket);
+		document.getElementById("chat_input").focus();
   }
 
   sendMessage = message => {
