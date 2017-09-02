@@ -1,6 +1,6 @@
 {
   "name": "ychat",
-  "version": "0.9.9",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
@@ -38,7 +38,7 @@
     "react-scripts": "1.0.7"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-react-scripts": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -46,6 +46,7 @@
     "express-mongo": "node eapp-mongo.js",
     "ychat-mongo": "npm run build && npm run express-mongo",
     "ychat-loki": "npm run build && npm run express",
-    "ychat": "npm run ychat-loki"
+    "ychat": "npm run ychat-loki",
+    "start": "npm run build && npm run express"
   }
 }
