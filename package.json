@@ -1,6 +1,6 @@
 {
   "name": "ychat",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
@@ -20,7 +20,8 @@
     "passport-local": "^1.0.0",
     "socket.io": "^2.0.2",
     "socket.io-client": "^2.0.2",
-    "superagent": "^3.5.2"
+    "superagent": "^3.5.2",
+    "lokijs": "^1.5.0"
   },
   "keywords": [
     "react",
@@ -42,6 +43,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "express": "node eapp.js",
-    "ychat": "npm run build && npm run express"
+    "express-mongo": "node eapp-mongo.js",
+    "ychat-mongo": "npm run build && npm run express-mongo",
+    "ychat-loki": "npm run build && npm run express",
+    "ychat": "npm run ychat-loki"
   }
 }

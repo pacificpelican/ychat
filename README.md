@@ -1,13 +1,13 @@
 # ychat
 
 an app from [Dan McKeown](http://danmckeown.info) copyright 2017
-...
 
 Licensed under [ISC License](https://opensource.org/licenses/ISC)
 
 ## Table Of Contents
 - [Features](#features)
 - [QuickStart](#quickstart)
+- [QuickStart with MongoDB](#quickstartMongo)
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Installation](#installation)
@@ -21,8 +21,14 @@ This project provides the following features:
 ## quickstart
 1. `cd ychat`
 2. `npm install`
+3. `npm run ychat`
+4. visit the server at [http://localhost:3000](http://localhost:3000)
+
+## quickstartMongo
+1. `cd ychat`
+2. `npm install`
 3. `brew services start mongodb`
-4. `npm run ychat`
+4. `npm run ychat-mongo`
 5. visit the server at [http://localhost:3000](http://localhost:3000)
 
 ## requirements
@@ -31,9 +37,9 @@ This project provides the following features:
 - MongoDB
 
 ## installation
-- Check [NodeJS](https://nodejs.org/en/) version: `node --version`
+- Check [NodeJS](https://nodejs.org/en/) version: `node --version` or install
 - Check [NPM](https://www.npmjs.com/) version: `npm --version`
-- Check that MongoDB [is installed](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/): `brew upgrade mongodb`
+- If you are using the MongoDB version (`npm run ychat-mongo`) check that MongoDB [is installed](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/): `brew upgrade mongodb`
 - Clone the Git repo: `git clone <repo-url>`
 
 ## usage

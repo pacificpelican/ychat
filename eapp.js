@@ -1,4 +1,4 @@
-//  ExpressJS startup page for ychat App by Dan McKeown http://danmckeown.info
+//  ExpressJS startup page for ychat App [LokiJS version] by Dan McKeown http://danmckeown.info
 //	ychat.pacificio.com | copyright 2017
 
 var express = require('express');
@@ -33,24 +33,43 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 var Strategy = require('passport-http').BasicStrategy;
-var MongoClient = require('mongodb').MongoClient;
+var loki = require('lokijs')
+var db = new loki(__dirname + '/users.json')
+
 var passport = require('passport');
 
 io.on('connection', function(socket){
   console.log('a user connected [socketIO]');
 });
 
-MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
-  if (err)  {
-    console.log(err);
-    throw err;
+let userfiles = 'userfiles';
+
+db.loadDatabase({}, function () {
+  let _collection = db.getCollection(userfiles);
+
+  if (!_collection) {
+    console.log("Collection %s does not exit. Creating ...", userfiles);
+      _collection = db.addCollection(userfiles);
   }
-  db.collection('testcollection').find().toArray(function (err, result) {
-    if (err) {
-      console.log(err);
-    }
+
+  var userList = _collection.where(function(obj) {
+    return (obj.sentTime != null);
   });
+ // console.log("user list: " +  userList);
+  //  var userList = _collection.find({ vYear:'2017' });
 });
+
+// MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
+//   if (err)  {
+//     console.log(err);
+//     throw err;
+//   }
+//   db.collection('testcollection').find().toArray(function (err, result) {
+//     if (err) {
+//       console.log(err);
+//     }
+//   });
+// });
 
 // Configure the Basic strategy for use by Passport.
 //
@@ -62,29 +81,54 @@ MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
 passport.use(new Strategy(
   function(username, password, cb) {
 //    db.users.findByUsername(username, function(err, user) {
-  console.log('submitted username and userpassword: ' + username + " " + password);
-  MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
-    if (err)  {
-      console.log(err);
-      throw err;
+//  console.log('submitted username and userpassword: ' + username + " " + password);
+  db.loadDatabase({}, function () {
+    let _collection = db.getCollection(userfiles);
+  
+    if (!_collection) {
+      console.log("Collection %s does not exit. Creating ...", userfiles);
+        _collection = db.addCollection(userfiles);
     }
-      db.collection('testcollection').find( { "username": { $eq: username } } ).toArray(function (err, result) {
-        console.log("result:")
-          console.log(result)
-          var hashedPW = result[0].userpassword;
-          if (result.length > 0) {
-            if (hashedPW == getHash(password)) {
-              return cb(null, username);
-            }
-            else {
-            return cb(null, false);
-            }
+
+ //   var userList = _collection.find( { "username": { $eq: username } } ).toArray(function (err, result) {
+    var userList = _collection.find( { "username": { $eq: username } } );
+      console.log("userList:");
+        console.log(userList);
+        var hashedPW = userList[0].userpassword;
+        if (userList.length > 0) {
+          if (hashedPW == getHash(password)) {
+            return cb(null, username);
           }
           else {
-            return cb(err);
+          return cb(null, false);
           }
-        })
-      });
+        }
+        else {
+          return cb(err);
+        }
+  })
+  // MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
+  //   if (err)  {
+  //     console.log(err);
+  //     throw err;
+  //   }
+  //     db.collection('testcollection').find( { "username": { $eq: username } } ).toArray(function (err, result) {
+  //       console.log("result:")
+  //         console.log(result)
+  //         var hashedPW = result[0].userpassword;
+  //         if (result.length > 0) {
+  //           if (hashedPW == getHash(password)) {
+  //             return cb(null, username);
+  //           }
+  //           else {
+  //           return cb(null, false);
+  //           }
+  //         }
+  //         else {
+  //           return cb(err);
+  //         }
+  //       })
+  //     });
     }));
 
 var _user_name = null;
@@ -126,16 +170,33 @@ app.post('/process/register', (req, res) => {
   let homeLink = "<a href='../../..'>Home</a>";
   let createdAt = Date.now();
 
-  MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
-    if (err)  {
-      console.log(err);
-      throw err;
-    }
-    else {
-      db.collection('testcollection').insertOne( {"username" :  user_name, "userpassword": user_pw, "created_at": createdAt});
-    }
-    res.send(user_name + ' ' + user_pw + ' created    | ' + homeLink);
-  });
+db.loadDatabase({}, function () {
+  let _collection = db.getCollection(userfiles);
+
+  if (!_collection) {
+      console.log("Collection %s does not exit. Creating ...", userfiles);
+      _collection = db.addCollection(userfiles);
+    
+  }
+
+  _collection.insertOne( {"username" :  user_name, "userpassword": user_pw, "created_at": createdAt});
+  //  _collection.insert(actor1);
+      
+  db.saveDatabase();
+
+  res.send(user_name + ' ' + user_pw + ' created    | ' + homeLink);
+});
+
+  // MongoClient.connect('mongodb://localhost:27017/testdb', function (err, db) {
+  //   if (err)  {
+  //     console.log(err);
+  //     throw err;
+  //   }
+  //   else {
+  //     db.collection('testcollection').insertOne( {"username" :  user_name, "userpassword": user_pw, "created_at": createdAt});
+  //   }
+  //   res.send(user_name + ' ' + user_pw + ' created    | ' + homeLink);
+  // });
 });
 
 app.use('/static', express.static('build/static'));
