@@ -72,15 +72,15 @@ passport.use(
       var userList = _collection.find({ username: { $eq: username } });
       console.log("userList:");
       console.log(userList);
-      var hashedPW = userList[0].userpassword;
-      if (userList.length > 0) {
+      if ((userList.length > 0) && (userList[0].userpassword != 'undefined')) {
+        var hashedPW = userList[0].userpassword;
         if (hashedPW == getHash(password)) {
           return cb(null, username);
         } else {
           return cb(null, false);
         }
       } else {
-        return cb(err);
+        return cb(null, false);
       }
     });
   })

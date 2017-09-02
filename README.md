@@ -1,6 +1,6 @@
 # ychat
 
-an app from [Dan McKeown](http://danmckeown.info) copyright 2017
+a real-time chat app from [Dan McKeown](http://danmckeown.info) copyright 2017
 
 Licensed under [ISC License](https://opensource.org/licenses/ISC)
 
@@ -14,9 +14,10 @@ Licensed under [ISC License](https://opensource.org/licenses/ISC)
 - [Demo](#demo-app)
 
 ## features
-This project provides the following features:
-- Simplistic NodeJS account system using MongoDB with basic auth and PassportJS
-- SocketIO-powered real time chat service for multiple users
+[ychat](http://ychat.pacificio.com) provides the following features:
+- Simplistic NodeJS account system using MongoDB with basic auth and [PassportJS](http://passportjs.org/)
+- Front-end designed to look like a contemporary chat UI built with [ReactJS](https://facebook.github.io/react/) components
+- [SocketIO](https://socket.io/)-powered real time chat service for multiple users
 
 ## quickstart
 1. `cd ychat`
@@ -32,9 +33,9 @@ This project provides the following features:
 5. visit the server at [http://localhost:3000](http://localhost:3000)
 
 ## requirements
-- NodeJS
+- [NodeJS](https://nodejs.org/en/)
 - NPM
-- MongoDB
+- [MongoDB](https://www.mongodb.com/) [if you are using the ychat-mongo version]
 
 ## installation
 - Check [NodeJS](https://nodejs.org/en/) version: `node --version` or install
@@ -49,6 +50,6 @@ This project provides the following features:
 - ychat installations are one large chat room with all currently logged-in users able to send and receive messages to the whole ychat room.
 
 ## demo-app
-- A [live deployement](http://ychat.pacificio.com) of ychat is planned for summer 2017.
-...
-This project uses the [ExpressJS](https://expressjs.com/) server and the front-end was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and uses front-end based on code posted to [CodePen](https://codepen.io/pacificpelican/pen/WjwMjy).
+- This project uses the [ExpressJS](https://expressjs.com/) server and the front-end 
+- Y Chat was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and uses front-end based on code posted to [CodePen](https://codepen.io/pacificpelican/pen/WjwMjy)
+- The default version [which runs from `npm run start`] saves user login data in the users.json file using [LokiJS](http://lokijs.org) while the ychat-mongo version [available at `npm run ychat-mongo`] persists the user data in a MongoDB document store
