@@ -6,6 +6,18 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+const crypto = require('crypto');
+
+const secret = 'abcdefg';
+
+function getHash(src) {
+  const hash = crypto.createHmac('sha256', src)
+  .update('I love cupcakes')  // via https://nodejs.org/api/crypto.html
+  .digest('hex');
+  console.log(src + " hashed is " + hash);
+  return hash;
+}
+
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
@@ -59,8 +71,9 @@ passport.use(new Strategy(
       db.collection('testcollection').find( { "username": { $eq: username } } ).toArray(function (err, result) {
         console.log("result:")
           console.log(result)
+          var hashedPW = result[0].userpassword;
           if (result.length > 0) {
-            if (result[0].userpassword == password) {
+            if (hashedPW == getHash(password)) {
               return cb(null, username);
             }
             else {
@@ -108,7 +121,7 @@ app.get('/register', (req, res) => {
 
 app.post('/process/register', (req, res) => {
   var user_name = req.body.login;
-  var user_pw = req.body.password;
+  var user_pw = getHash(req.body.password);
   console.log(req.body);
   let homeLink = "<a href='../../..'>Home</a>";
   let createdAt = Date.now();

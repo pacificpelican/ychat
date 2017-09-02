@@ -101,14 +101,14 @@ class MyInput extends Component {
   	return (
 		<div id="innerContainer">
 			<div id="title_area">
-				<h1 class="nasty_chat">
+				<h1 className="nasty_chat">
 					Y CHAT
 				</h1>
 				<h5 id="tagline">
 					from <a href="http://danmckeown.info">Dan McKeown</a>
 				</h5>
 				<h6 id="usernameheader">
-					<span id="showusernamelabel" class="userinfo">user:</span> <span id="showusername" class="userinfo"></span>
+					<span id="showusernamelabel" className="userinfo">user:</span> <span id="showusername" className="userinfo"></span>
 				</h6>
 				<p>
 					<span id="cantclick"><a href="#" onClick={function() { alert('ok the cursor should be free')}}>just type!</a></span>
