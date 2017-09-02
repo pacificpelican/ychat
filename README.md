@@ -1,7 +1,9 @@
 # ychat
 
 a real-time chat app from [Dan McKeown](http://danmckeown.info) copyright 2017
-
+***
+![ychatdemo](ychat-input.gif)
+***
 Licensed under [ISC License](https://opensource.org/licenses/ISC)
 
 ## Table Of Contents
@@ -11,13 +13,15 @@ Licensed under [ISC License](https://opensource.org/licenses/ISC)
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Installation](#installation)
-- [Demo](#demo-app)
+- [Notes](#notes)
 
 ## features
 [ychat](http://ychat.pacificio.com) provides the following features:
-- Simplistic NodeJS account system using MongoDB with basic auth and [PassportJS](http://passportjs.org/)
-- Front-end designed to look like a contemporary chat UI built with [ReactJS](https://facebook.github.io/react/) components
-- [SocketIO](https://socket.io/)-powered real time chat service for multiple users
+
+* Simplistic NodeJS account system using MongoDB with basic auth and [PassportJS](http://passportjs.org/)
+* Front-end designed to look like a contemporary chat UI built with [ReactJS]
+(https://facebook.github.io/react/) components
+* [SocketIO](https://socket.io/)-powered real time chat service for multiple users
 
 ## quickstart
 1. `cd ychat`
@@ -49,7 +53,7 @@ Licensed under [ISC License](https://opensource.org/licenses/ISC)
 - Once the chat page loads, the user can share chat messages with the room and receive messages from other users logged into the site
 - ychat installations are one large chat room with all currently logged-in users able to send and receive messages to the whole ychat room.
 
-## demo-app
-- This project uses the [ExpressJS](https://expressjs.com/) server and the front-end 
+## notes
+- This project uses the [ExpressJS](https://expressjs.com/) server on NodeJS to serve the front-end files and answer API requests like login attempts and message passing over websockets
 - Y Chat was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and uses front-end based on code posted to [CodePen](https://codepen.io/pacificpelican/pen/WjwMjy)
 - The default version [which runs from `npm run start`] saves user login data in the users.json file using [LokiJS](http://lokijs.org) while the ychat-mongo version [available at `npm run ychat-mongo`] persists the user data in a MongoDB document store
