@@ -1,5 +1,7 @@
 # ychat
 
+![ychatlogo](ychatlogo.png)
+***
 a real-time chat app from [Dan McKeown](http://danmckeown.info) copyright 2017
 ***
 ![ychatdemo](ychat-input.gif)
