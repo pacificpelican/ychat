@@ -4,7 +4,7 @@
 ***
 a real-time chat app from [Dan McKeown](http://danmckeown.info) copyright 2017
 
-Licensed under [ISC License](https://opensource.org/licenses/ISC)
+Licensed under [ISC License](LICENSE)
 ***
 ![ychatdemo](ychat-input.gif)
 ***
@@ -22,8 +22,16 @@ Licensed under [ISC License](https://opensource.org/licenses/ISC)
 [ychat](http://ychat.pacificio.com) provides the following features:
 
 * Simplistic NodeJS account system using LokiJS [or MongoDB] with basic auth via [PassportJS](http://passportjs.org/)
-* Front-end designed to look like a contemporary chat UI built using [ReactJS](https://facebook.github.io/react/) components
-* [SocketIO](https://socket.io/)-powered real time chat service for multiple users
+* Front-end designed to look like a contemporary chat UI; built using [ReactJS](https://facebook.github.io/react/) components
+* [SocketIO](https://socket.io/)-powered real time chat service for multiple logged-in users
+
+### service worker
+* A service worker provides caching for the app; as [the create-react-app readme notes](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app):
+> The [`sw-precache-webpack-plugin`](https://github.com/goldhand/sw-precache-webpack-plugin) is integrated into production configuration, and it will take care of generating a service worker file that will automatically precache all of your local assets and keep them up to date as you deploy updates.
+> The service worker will use a [cache-first strategy](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network) for handling all requests for local assets, including the initial HTML, ensuring
+that your web app is reliably fast, even on a slow or unreliable network.
+> ### Opting Out of Caching
+> If you would prefer not to enable service workers prior to your initial production deployment, then remove the call to `serviceWorkerRegistration.register()` from [`src/index.js`](src/index.js).
 
 ## quickstart
 1. `cd ychat`
