@@ -31,7 +31,7 @@ Licensed under [ISC License](LICENSE)
 > The service worker will use a [cache-first strategy](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network) for handling all requests for local assets, including the initial HTML, ensuring
 that your web app is reliably fast, even on a slow or unreliable network.
 > ### Opting Out of Caching
-> If you would prefer not to enable service workers prior to your initial production deployment, then remove the call to `serviceWorkerRegistration.register()` from [`src/index.js`](src/index.js).
+> If you would prefer not to enable service workers prior to your initial production deployment, then remove the call to ~~`serviceWorkerRegistration.register()`~~ *`registerServiceWorker()`* from [`src/index.js`](src/index.js).
 
 ## quickstart
 1. `cd ychat`
