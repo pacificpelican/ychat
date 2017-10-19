@@ -25,8 +25,8 @@ io.on('connection', function(socket){
   });
 });
 
-server.listen(process.env.PORT || 3000, function () {
-  console.log('ychat app listening on port 3000');
+server.listen(process.env.PORT || 3000, function() {
+  console.log("ychat app listening on port 3000 or " + process.env.PORT);
 });
 
 var bodyParser = require('body-parser');

@@ -6,7 +6,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import io from "socket.io-client";
 
-var socket = require("socket.io-client")("http://localhost:3000");
+var socket = require("socket.io-client")(window.location.href);
 
 var request = require("superagent");
 

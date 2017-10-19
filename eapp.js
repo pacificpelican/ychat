@@ -27,7 +27,7 @@ io.on("connection", function(socket) {
 });
 
 server.listen(process.env.PORT || 3000, function() {
-  console.log("ychat app listening on port 3000");
+  console.log("ychat app listening on port 3000 or " + process.env.PORT);
 });
 
 var bodyParser = require("body-parser");
@@ -72,7 +72,7 @@ passport.use(
       var userList = _collection.find({ username: { $eq: username } });
       console.log("userList:");
       console.log(userList);
-      if ((userList.length > 0) && (userList[0].userpassword != 'undefined')) {
+      if (userList.length > 0 && userList[0].userpassword != "undefined") {
         var hashedPW = userList[0].userpassword;
         if (hashedPW == getHash(password)) {
           return cb(null, username);
