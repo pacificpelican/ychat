@@ -10,18 +10,20 @@ section div {
 	font-family: Roboto, Ubuntu, Helvetica, "Rubik Mono One", Hack, monospace;
 }
 
-main {
-	border-color: blue;
-	outline-style: solid;
-	outline-style: double;
-	outline-color: yellow;
-	width: 60vw;
-	margin-left: 20vw;
-	height: 87vh;
-	margin-top: -4.5em;
-	padding-left: 0.5rem;
-	padding-top: 0.5rem;
-	display: inline-block;
+@media (min-width: 30em) {
+	main {
+		border-color: blue;
+		outline-style: solid;
+		outline-style: double;
+		outline-color: yellow;
+		width: 60vw;
+		margin-left: 20vw;
+		height: 87vh;
+		margin-top: -4.5em;
+		padding-left: 0.5rem;
+		padding-top: 0.5rem;
+		display: inline-block;
+	}
 }
 
 body, html {
@@ -83,6 +85,25 @@ h5#tagline, h5#tagline a {
 	}
 }
 
+@media (max-width: 30em) {
+	main {
+		border-color: blue;
+		outline-style: solid;
+		outline-style: double;
+		outline-color: yellow;
+		width: 90vw;
+		margin-left: 1vw;
+		height: 87vh;
+		margin-top: -4.5em;
+		padding-left: 0.5rem;
+		padding-top: 0.5rem;
+		display: inline-block;
+	}
+	span#cantclick, span#ychatlink {
+		opacity: 0.25;
+	}
+}
+
 span#cantclick, span#cantclick a {
 	color: darkblue;
 }
@@ -95,4 +116,8 @@ span#ychatlink a {
 	font-size: small;
 	font-family: Helvetica, sans-serif;
 	color: lightgreen;
+}
+
+div.user_input {
+	opacity: 0.85;
 }
